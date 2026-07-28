@@ -236,7 +236,7 @@ rebuild can be verified.
 ```bibtex
 @software{brainmed8b,
   title  = {BrainMed-8B: a reproducible medical reasoning fine-tuning and evaluation pipeline},
-  author = {Assa, Stephane Williams Anderson},
+  author = {BrainResearch},
   year   = {2026},
   url    = {https://github.com/williamsassa/BrainMed-8B}
 }

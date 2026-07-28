@@ -86,12 +86,16 @@ def grouped_bars(out_dir):
         off = (j - (n - 1) / 2) * (w + 0.006)
         ax.bar([i + off for i in x], vals, w, label=label, color=SLOTS[j],
                edgecolor=SURFACE, linewidth=0.8, zorder=2)
-        if ours:                       # selective direct labels: the table carries the rest
-            for i, v in enumerate(vals):
-                ax.text(i + off, v + 1.1, f"{v:.1f}", ha="center", fontsize=8.6,
-                        color=INK, fontweight="bold", zorder=3)
+        # every bar labelled: three of the six palette slots sit under 3:1 against the
+        # surface, and the palette's relief rule requires the values to be readable without
+        # relying on hue. Rotated, because six bars per group leaves no horizontal room.
+        for i, v in enumerate(vals):
+            ax.text(i + off, v + 1.0, f"{v:.1f}", ha="center", va="bottom",
+                    rotation=90, fontsize=7.6,
+                    color=INK if ours else INK2, fontweight="bold" if ours else "normal",
+                    zorder=3)
     ax.set_xticks(list(x), BENCH, fontsize=10)
-    ax.set_ylim(0, max(max(v) for _, v, _ in CHART) * 1.20)
+    ax.set_ylim(0, max(max(v) for _, v, _ in CHART) * 1.32)
     ax.set_ylabel("Accuracy (%)")
     ax.set_title("BrainMed-8B against published 7B-8B medical LLMs",
                  loc="left", pad=16, color=INK, fontsize=13.5, fontweight="bold")
@@ -119,7 +123,6 @@ def bw_table(out_dir):
         "text.color": "black",
     })
     rows = [r for _, group in TABLE for r in group]
-    best = [max(r[1][c] for r in rows) for c in range(len(COLS))]
 
     ncol = len(COLS) + 1
     wcol = [0.235] + [(1 - 0.235) / (ncol - 1)] * (ncol - 1)
@@ -154,15 +157,19 @@ def bw_table(out_dir):
             ax.plot([0, 1], [y, y], color="black", lw=0.6)  # group separator
             y -= 0.22 / fh
         for name, vals in group:
+            # bold marks our row, not the per-column maximum: the published values were
+            # produced on another harness, so "best in column" would compare across
+            # protocols and read as a claim the measurements do not support
+            ours = "(ours)" in name
             y -= row_h / fh
-            ax.text(xpos(0), y + 0.20 / fh, name, fontsize=11, va="top", ha="left")
+            ax.text(xpos(0), y + 0.20 / fh, name, fontsize=11, va="top", ha="left",
+                    fontweight="bold" if ours else "normal")
             for c, v in enumerate(vals):
                 # one decimal throughout: the published rows are only reported to one, and
                 # mixing precisions in the same column implies a precision we cannot compare
-                bold = abs(v - best[c]) < 1e-9
                 ax.text(xpos(c + 1), y + 0.20 / fh, f"{v:.1f}",
                         fontsize=11, va="top", ha="center",
-                        fontweight="bold" if bold else "normal")
+                        fontweight="bold" if ours else "normal")
         y -= 0.06 / fh
     ax.plot([0, 1], [y, y], color="black", lw=1.5)          # bottom rule
 
