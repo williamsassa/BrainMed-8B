@@ -37,6 +37,8 @@ are measured by this pipeline; every other row is transcribed from published tab
 | **BrainMed-8B-SFT** | 58.77 | 56.82 | 18.08 | 72.11 | 61.20 | 77.10 | **57.35** |
 | **BrainMed-8B** | 62.01 | 54.87 | 18.63 | 76.67 | 64.07 | 79.10 | **59.23** |
 
+![Results table](results/figures/table_results.png)
+
 ![Ranking against published 7B-8B medical LLMs](results/figures/fig8_paper_ranking.png)
 
 ### Full 10-benchmark suite
@@ -172,7 +174,7 @@ prompt is applied at inference: dropping it is a train/serve mismatch that measu
 accuracy. Answer-format compliance is reported per benchmark, so an accuracy leaning on the
 scorer's fuzzy fallbacks is visible rather than absorbed.
 
-![Before and after on the same harness](results/figures/fig2_before_after.png)
+![BrainMed-8B against published 7B-8B medical LLMs](results/figures/fig_model_comparison.png)
 
 ---
 
