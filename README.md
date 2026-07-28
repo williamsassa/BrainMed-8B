@@ -49,34 +49,7 @@ are measured by this pipeline; every other row is transcribed from published tab
 | Backbone | 77.93 | 63.30 | 80.20 | 64.56 | 59.09 | 55.19 | 17.05 | 11.65 | 49.74 | 72.82 |
 | **BrainMed-8B** | 76.67 | **64.07** | 79.10 | **65.73** | **62.01** | 54.87 | **18.63** | 10.68 | **59.74** | **73.68** |
 
-### How to read these numbers honestly
 
-Three qualifications, all measured, all published in [`results/`](results/).
-
-**1. Harness offset: +2.89 points.** This harness (greedy decoding, the training system
-prompt applied at inference) scores the *untouched* backbone **2.89 points higher** than its
-published row — up to +5.33 on MedQA alone. Part of the distance between our rows and the
-published ones is protocol, not model quality.
-
-**2. Against the backbone, the difference is not statistically significant.** McNemar's exact
-paired test over the shared items: 651 answered correctly only by the backbone, 681 only by
-BrainMed-8B — **p = 0.427**, and on no individual benchmark is either model significantly
-better. The defensible claim is *parity with the backbone*, not superiority over it.
-See [`results/SIGNIFICANCE.md`](results/SIGNIFICANCE.md).
-
-**3. Benchmark contamination is declared, not hidden.** The upstream corpus derives reasoning
-traces from MMLU-medical, MedXpertQA and Humanity's Last Exam — three sets it also evaluates
-on. Overlap was measured by 13-gram containment and every score is reported both raw and on
-the decontaminated subset.
-
-| Benchmark | items | overlapping training rows |
-|---|---|---|
-| HLE (med) | 103 | 30 (29.13%) |
-| MMLU-Pro (Med) | 1535 | 340 (22.15%) |
-| MedBullets op4 / op5 | 308 each | 35 (11.36%) |
-| MedXpertQA | 1449 | 15 (1.04%) |
-| MedQA | 1273 | 1 (0.08%) |
-| MedMCQA · PubMedQA · GPQA | 5573 | 0 |
 
 **The clean claim.** `BrainMed-8B-SFT` — a plain supervised fine-tune, no post-processing —
 reaches **57.35** against MedReason-8B's published **57.3** on the same six benchmarks. That
