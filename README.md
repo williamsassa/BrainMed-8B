@@ -87,7 +87,7 @@ never a rewrite, and skipped whenever ambiguous.
 | Parallelism | DeepSpeed ZeRO-3, no offload, FlashAttention-2, gradient checkpointing |
 | Batching | length-grouped sampling |
 | Gradient clipping | 1.0 · seed 2002 |
-| Hardware | 4 × H100 80GB SXM, ≈ 1.5 h |
+| Hardware | 4 × H100 80GB SXM |
 
 Validation loss runs every 50 optimizer steps on a held-out split of 923 rows, tracked
 **separately per data source** — the instrumentation that revealed the corpus was pulling the
