@@ -1,13 +1,3 @@
-#!/usr/bin/env python
-"""
-Create (or update) the Hugging Face Space that serves the model.
-
-    HF_TOKEN=... python scripts/create_space.py --space_id BrainHealthAI/BrainMed-8B-demo
-
-The Space is created **private** by default. A demo of a medical model is an outward-facing
-artifact: make it public deliberately, once the disclaimer and the hardware are what you want
-people to see, not as a side effect of a deploy script.
-"""
 import argparse
 import os
 
