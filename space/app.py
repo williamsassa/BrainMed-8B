@@ -1,11 +1,3 @@
-"""Gradio demo for BrainMed-8B.
-
-The model is trained to reason inside <think>...</think> and answer inside <answer>...</answer>
-under a fixed system prompt. The UI keeps that contract: the same system prompt is sent at
-inference (dropping it is a train/serve mismatch that measurably costs accuracy), and the two
-blocks are shown separately - the reasoning is visible but clearly marked as the model's
-working, not as an answer.
-"""
 import os
 import re
 import threading

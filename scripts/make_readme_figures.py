@@ -1,15 +1,3 @@
-#!/usr/bin/env python
-"""
-The two figures used in the README: a grouped bar comparison and a plain results table.
-
-    python scripts/make_readme_figures.py --out_dir results/figures
-
-Colour assignment follows the reference palette's fixed slot order, which is the CVD-safety
-mechanism rather than a style choice: series are ordered so that slots 1-6 are used in
-sequence (worst adjacent pair dE 9.1 protan, 19.6 normal-vision). Three of those six slots
-sit under 3:1 against the surface, so the palette's relief rule applies - the black-and-white
-table published beside the chart is that relief.
-"""
 import argparse
 import os
 

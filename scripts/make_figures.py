@@ -1,17 +1,3 @@
-#!/usr/bin/env python
-"""
-Evaluation figures, saved as PNG (300 dpi) + PDF next to the report.
-
-Four figures, in the order a reader needs them:
-  1. average score across the paper's six-benchmark table - where we land overall
-  2. controlled before/after on the same harness - what the fine-tune actually did
-  3. head-to-head against the backbone and the paper's best model, per benchmark
-  4. training and validation loss - evidence the run was healthy
-
-Palette: categorical slots 1-3 of the reference palette, validated all-pairs for CVD
-(worst deutan dE 9.2, worst normal-vision dE 24.0). Aqua sits under 3:1 on the light
-surface, so every bar carries a visible value label and REPORT.md holds the table view.
-"""
 import argparse
 import glob
 import json

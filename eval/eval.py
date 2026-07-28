@@ -1,20 +1,3 @@
-#!/usr/bin/env python
-"""
-Benchmark runner against an OpenAI-compatible completions endpoint (vLLM or SGLang).
-
-Kept faithful to MedReason `src/evaluation/eval.py` on everything that moves the number
-(strict prompt wording, greedy decoding, max(head,tail) scoring). Changed on purpose:
-
-  * the training system prompt is injected at inference too. Our corpus is trained with a
-    system turn defining the <think>/<answer> constitution; evaluating without it is a
-    train/serve mismatch that costs accuracy and format compliance.
-  * one result file per benchmark, plus a combined summary consumable by make_report.py.
-  * bounded retries and chunked requests, so a 4000-question run does not die at 95%.
-
-Usage:
-  python eval/eval.py --model_path <hf-or-local> --port 30000 \
-      --benchmarks eval/benchmarks --out_dir results/<run-name>
-"""
 import argparse
 import json
 import os

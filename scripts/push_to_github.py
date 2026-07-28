@@ -1,24 +1,3 @@
-#!/usr/bin/env python
-"""
-Push the pipeline to a GitHub repository.
-
-    GITHUB_TOKEN=ghp_... python scripts/push_to_github.py --repo <owner>/<name> --private
-
-What goes: code, configs, manifests, the evaluation report, the comparison tables, the
-figures. What does not, and why:
-
-  * model weights - 16GB per checkpoint against a 100MB GitHub file limit. They live on the
-    Hugging Face Hub; this repo links to them.
-  * the prepared corpus (~300MB) and the benchmark jsonl files - both are *derived*, and
-    `data/prepare_data.py` and `eval/build_benchmarks.py` rebuild them byte-for-byte from
-    upstream. The manifests, with their SHA-256 digests, are committed so a rebuild can be
-    verified. Redistributing another project's benchmark files is also a licensing question
-    this repo does not need to answer.
-  * raw generation logs - hundreds of MB of model outputs, archived alongside the model
-    instead.
-
-Before pushing, the script scans every staged file for credentials and refuses on a hit.
-"""
 import argparse
 import os
 import re

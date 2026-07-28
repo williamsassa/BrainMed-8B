@@ -1,15 +1,3 @@
-#!/usr/bin/env python
-"""
-Prepare the SFT corpus: download -> decontaminate -> (optional) MCQ answer-format
-alignment -> write train/val jsonl + a signed manifest.
-
-The decontamination pass is mandatory for any published claim: the upstream
-MedReason corpus generates CoT from MMLU-medical, MedXpertQA and Humanity's-Last-Exam,
-all three of which are *evaluation* benchmarks in the MedReason paper.
-
-Usage:
-  python data/prepare_data.py --out_dir ./data/prepared
-"""
 import argparse
 import collections
 import hashlib

@@ -1,12 +1,3 @@
-#!/usr/bin/env python
-"""
-Build the comparison table: our runs measured here, everyone else's from the paper.
-
-Published baselines are transcribed, never re-run - re-measuring them on a different
-harness would produce numbers that are neither ours nor the paper's. The report keeps the
-two apart and prints the gap against the two targets that matter: the backbone we started
-from, and MedReason-8B.
-"""
 import argparse
 import glob
 import json

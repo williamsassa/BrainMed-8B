@@ -1,17 +1,3 @@
-#!/usr/bin/env python
-"""
-Rewrite the model card on the Hub: benchmark table, figures, sample answers.
-
-Touches nothing but the card and its assets - the 16GB of weights are left alone, so this is
-cheap to re-run whenever the numbers or the figures change.
-
-    HF_TOKEN=... python scripts/update_model_card.py \
-        --repo_id BrainHealthAI/BrainMed-8B --run brainmed-8b-final
-
-Sample-answer images are rendered from results/smoke_test.json rather than pasted from
-screenshots, so they can be regenerated from the transcript at any time and always match the
-run they claim to show.
-"""
 import argparse
 import json
 import os

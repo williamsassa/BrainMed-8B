@@ -1,22 +1,3 @@
-#!/usr/bin/env python
-"""
-Is the difference between two runs real, or sampling noise?
-
-The no-regression gate uses a flat tolerance in accuracy points, which is not comparable
-across benchmarks: 0.5 pt on MedMCQA (n=4183) is far outside the noise, while 0.5 pt on
-MedBullets (n=308) is a fifth of one standard error. This script answers the question
-properly.
-
-Both runs answer the *same* items, so the comparison is paired and the right test is
-McNemar's: of the items where the two runs disagree, how lopsided is the split? Items both
-get right, or both get wrong, carry no information about which is better and are excluded -
-which is exactly why the paired test is much more sensitive than comparing two accuracies
-with independent binomial error bars.
-
-    python scripts/significance.py --a base-HuatuoGPT-o1-8B --b brainmed-8b-v1__soup-last-a0.3
-
-Reads the per-item logs written by eval.py (results/<run>/logs/<run>__<bench>.json).
-"""
 import argparse
 import glob
 import json

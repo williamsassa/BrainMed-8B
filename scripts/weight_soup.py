@@ -1,21 +1,3 @@
-#!/usr/bin/env python
-"""
-Linear weight interpolation between the backbone and the fine-tune (WiSE-FT / model soup).
-
-    theta(a) = (1 - a) * theta_backbone + a * theta_finetuned
-
-Why this matters when the corpus is largely a replay: a full fine-tune of a model on data
-it has already seen tends to trade some of its existing strengths for a small gain. The
-interpolation lets you buy back the strengths continuously and pick the point that is
-above the backbone on the benchmarks you care about, and below it on none. It costs no
-training - only one evaluation pass per alpha.
-
-    python scripts/weight_soup.py --base UCSC-VLAA/MedReason-8B \
-        --finetuned ./ckpts/brainmed-mr8b/best --alpha 0.3 --out ./ckpts/soup-a0.3
-
-Then evaluate ./ckpts/soup-a0.3 like any other checkpoint. Sweep alpha over 0.2/0.3/0.5
-and keep the one that clears the no-regression gate with the highest average.
-"""
 import argparse
 import json
 import os

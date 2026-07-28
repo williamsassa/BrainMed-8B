@@ -1,16 +1,3 @@
-#!/usr/bin/env python
-"""
-Does the model actually answer? Load it and ask a handful of clinical questions.
-
-Benchmarks measure accuracy on multiple choice; they say nothing about whether the model is
-usable in conversation - whether it opens and closes its <think>/<answer> tags, whether it
-stops, whether it degenerates on an open-ended prompt. This runs the checkpoint on a few
-questions of different shapes and prints the raw output so that can be judged by eye.
-
-    python scripts/smoke_test_model.py --model ./ckpts/brainmed-8b-v1/soup-last-a0.3
-
-Uses vLLM when available (fast), otherwise transformers.
-"""
 import argparse
 import json
 import os

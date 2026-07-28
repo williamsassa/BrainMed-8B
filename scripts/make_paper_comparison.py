@@ -1,22 +1,3 @@
-#!/usr/bin/env python
-"""
-Comparison tables and figures: our measured runs against the published 7B-8B models.
-
-Published values are transcribed from MedReason (arXiv:2504.00993) Tables 2 and 4 and are
-never re-run. Our rows are measured by this pipeline. Those two sets were produced on
-different harnesses, so every table and figure carries the measured harness offset: when a
-base-* run exists, the untouched backbone is scored here and against its own published row,
-and the gap is the correction that applies to every our-vs-published comparison.
-
-Each table is emitted twice - as markdown in COMPARISON.md and as a standalone image in
-results/figures/ - from one shared data structure, so the two can never disagree.
-
-    python scripts/make_paper_comparison.py --exclude MedReason-8B --published_backbone_only
-
---exclude drops named published rows; --published_backbone_only drops our measured backbone
-row in favour of its published counterpart. Both are deliberate, logged choices: what was
-left out is printed under every table and figure.
-"""
 import argparse
 import glob
 import json

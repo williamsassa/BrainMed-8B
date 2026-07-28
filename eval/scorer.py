@@ -1,16 +1,3 @@
-"""
-Answer extraction + scoring.
-
-Derived from MedReason `src/evaluation/scorer.py` (itself a fork of HuatuoGPT-o1's), kept
-bit-compatible on the matching cascade so our numbers stay comparable with the published
-tables. Two additions:
-
-  1. `<answer>...</answer>` is recognised as a final-answer delimiter. Our models are
-     trained on that constitution; without this branch the regex cascade scans the whole
-     chain of thought and picks up option letters mentioned while reasoning.
-  2. Extraction statistics are returned, so a collapse in format compliance is visible
-     instead of being silently absorbed by the fuzzy fallbacks.
-"""
 import difflib
 import json
 import os

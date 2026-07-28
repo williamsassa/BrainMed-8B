@@ -1,23 +1,3 @@
-#!/usr/bin/env python
-"""
-Assemble the authentic evaluation bundle used by the MedReason paper.
-
-Provenance (verified, not reconstructed):
-  * MedReason repo `eval_data/`      -> MedBullets op4/op5, MedXpertQA, HLE(med), MedQA-5opt
-  * HuatuoGPT-o1 repo `evaluation/`  -> MedQA-4opt, MedMCQA-val, PubMedQA, MMLU-Pro-Medical, GPQA-Med
-
-Why both: MedReason's eval code is a fork of HuatuoGPT-o1's (identical scorer up to one
-branch), and MedReason's reported baseline rows are HuatuoGPT-o1's published numbers.
-The four common benchmarks therefore have to be scored on the HuatuoGPT-o1 bundle for the
-comparison against published tables to be apples-to-apples. Note in particular that
-MedReason's own `medqa_test.jsonl` is the *5-option* variant while the published 58.7 /
-70.2 / 72.6 MedQA numbers are on the *4-option* variant - scoring the wrong one silently
-costs several points.
-
-Usage:
-  python eval/build_benchmarks.py --medreason_repo ../external/MedReason \
-                                  --huatuo_repo ../external/HuatuoGPT-o1
-"""
 import argparse
 import hashlib
 import json

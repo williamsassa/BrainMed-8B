@@ -1,14 +1,3 @@
-#!/usr/bin/env python
-"""
-Publish the selected checkpoint to the Hugging Face Hub.
-
-Refuses to upload unless the checkpoint really is a full 8B model: it counts the
-parameters in the safetensors shards and checks the config, so an adapter, a truncated
-shard set or a half-written save cannot reach the Hub wearing the right name.
-
-  python scripts/push_to_hf.py --checkpoint ./ckpts/brainmed-8b-v1/best \
-      --repo_id BrainHealthAI/BrainMed-Reasoning-8B --results ./results --private
-"""
 import argparse
 import json
 import os
