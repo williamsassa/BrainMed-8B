@@ -1,0 +1,124 @@
+{
+  "run": "brainmed-8b-v1__last",
+  "model": "./ckpts/brainmed-8b-v1/last",
+  "config": {
+    "model_path": "./ckpts/brainmed-8b-v1/last",
+    "port": 30000,
+    "host": "127.0.0.1",
+    "benchmarks": "./eval/benchmarks",
+    "only": [
+      "medqa_4opt",
+      "medmcqa_val",
+      "pubmedqa_test",
+      "medbullets_op4",
+      "medbullets_op5",
+      "medxpertqa"
+    ],
+    "out_dir": "./results/brainmed-8b-v1__last",
+    "run_name": "brainmed-8b-v1__last",
+    "max_new_tokens": 2000,
+    "chunk_size": 256,
+    "temperature": 0.0,
+    "top_p": 0.9,
+    "no_strict_prompt": false,
+    "max_retries": 4,
+    "wandb_run_id": null
+  },
+  "system_prompt": "You are a medical reasoning assistant. Work through the clinical problem step by step inside <think>...</think>, grounding every step in established medical knowledge, then give the final, complete answer inside <answer>...</answer>.",
+  "benchmarks": {
+    "medbullets_op4": {
+      "accuracy": 58.77,
+      "acc_head": 58.77,
+      "acc_tail": 58.77,
+      "n": 308,
+      "empty_outputs": 0,
+      "format_compliance": 100.0,
+      "match_types": {
+        "strict": 308
+      },
+      "accuracy_clean": 57.14,
+      "n_clean": 273,
+      "n_contaminated": 35,
+      "contamination_bias": 1.63
+    },
+    "medbullets_op5": {
+      "accuracy": 56.82,
+      "acc_head": 56.82,
+      "acc_tail": 56.82,
+      "n": 308,
+      "empty_outputs": 0,
+      "format_compliance": 100.0,
+      "match_types": {
+        "strict": 308
+      },
+      "accuracy_clean": 57.51,
+      "n_clean": 273,
+      "n_contaminated": 35,
+      "contamination_bias": -0.69
+    },
+    "medmcqa_val": {
+      "accuracy": 61.2,
+      "acc_head": 61.2,
+      "acc_tail": 61.18,
+      "n": 4183,
+      "empty_outputs": 0,
+      "format_compliance": 99.9,
+      "match_types": {
+        "strict": 4179,
+        "option_text": 2,
+        "letter": 1,
+        "fuzzy": 1
+      },
+      "accuracy_clean": 61.2,
+      "n_clean": 4183,
+      "n_contaminated": 0,
+      "contamination_bias": 0.0
+    },
+    "medqa_4opt": {
+      "accuracy": 72.11,
+      "acc_head": 72.11,
+      "acc_tail": 72.11,
+      "n": 1273,
+      "empty_outputs": 0,
+      "format_compliance": 100.0,
+      "match_types": {
+        "strict": 1273
+      },
+      "accuracy_clean": 72.17,
+      "n_clean": 1272,
+      "n_contaminated": 1,
+      "contamination_bias": -0.06
+    },
+    "medxpertqa": {
+      "accuracy": 18.08,
+      "acc_head": 18.08,
+      "acc_tail": 18.08,
+      "n": 1449,
+      "empty_outputs": 0,
+      "format_compliance": 100.0,
+      "match_types": {
+        "strict": 1449
+      },
+      "accuracy_clean": 17.78,
+      "n_clean": 1434,
+      "n_contaminated": 15,
+      "contamination_bias": 0.3
+    },
+    "pubmedqa_test": {
+      "accuracy": 77.1,
+      "acc_head": 77.1,
+      "acc_tail": 77.1,
+      "n": 1000,
+      "empty_outputs": 0,
+      "format_compliance": 100.0,
+      "match_types": {
+        "strict": 1000
+      },
+      "accuracy_clean": 77.1,
+      "n_clean": 1000,
+      "n_contaminated": 0,
+      "contamination_bias": 0.0
+    }
+  },
+  "training_kept_contaminated_rows": true
+}

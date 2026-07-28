@@ -1,0 +1,98 @@
+{
+  "_source": "MedReason, arXiv:2504.00993 (Wu et al., 2025). Values transcribed from Tables 2, 3 and 4.",
+  "_note_on_discrepancy": "The paper reports different numbers for the same model across tables (e.g. Llama3.1-Instruct-8B MedBullets-op4 is 48.7 in Table 2 but 43.2 in Table 4; MedXpert 13.2 vs 14.3). The most likely cause is free vs strict answer prompt. Compare our runs against Table 4 for the SOTA claim, and against Table 2 for the data-quality claim on Llama3.1 - never mix the two.",
+  "_benchmark_keys": {
+    "medqa_4opt": "MedQA (USMLE, 4 options)",
+    "medmcqa_val": "MedMCQA validation",
+    "pubmedqa_test": "PubMedQA",
+    "mmlu_pro_medical": "MMLU-Pro (medical)",
+    "medbullets_op4": "MedBullets op4",
+    "medbullets_op5": "MedBullets op5",
+    "medxpertqa": "MedXpertQA (text)",
+    "hle_med": "Humanity's Last Exam (medical)"
+  },
+
+  "table4_sota_comparison": {
+    "_columns": ["medbullets_op4", "medbullets_op5", "medxpertqa", "medqa_4opt", "medmcqa_val", "pubmedqa_test", "avg"],
+    "Llama3.1-Instruct-8B":  [43.2, 40.9, 14.3, 58.7, 56.0, 75.2, 48.0],
+    "Qwen2.5-Instruct-7B":   [50.0, 41.6, 12.6, 57.0, 55.6, 72.7, 48.2],
+    "Mistral-Instruct-7B":   [43.5, 33.4, 11.4, 48.2, 44.9, 50.1, 38.6],
+    "Medical-Llama3-8B":     [33.4, 25.3,  9.0, 40.3, 46.8, 48.0, 33.8],
+    "OpenBioLLM-8B":         [39.2, 35.7, 10.7, 57.7, 54.1, 74.1, 45.3],
+    "BioMistral-7B":         [46.4, 33.1, 12.4, 45.0, 40.2, 66.9, 40.7],
+    "Medical-CoT-8B":        [39.3, 34.1, 12.6, 49.0, 42.6, 68.0, 40.9],
+    "DeepSeek-Distill-8B":   [41.9, 35.1, 13.5, 55.4, 49.0, 73.9, 44.8],
+    "Huatuo-o1-SFT-8B":      [53.3, 49.7, 17.3, 70.2, 58.2, 76.1, 54.1],
+    "Huatuo-o1-RL-8B":       [55.2, 51.3, 16.7, 72.6, 60.4, 79.2, 55.9],
+    "MedReason-8B":          [57.5, 55.5, 19.0, 71.8, 60.7, 79.4, 57.3]
+  },
+
+  "table2_data_ablation": {
+    "_columns": ["medqa_4opt", "medmcqa_val", "pubmedqa_test", "mmlu_pro_medical", "medbullets_op4", "medbullets_op5", "medxpertqa", "hle_med", "avg"],
+    "Llama3.1-Instruct-8B (base)":        [58.7, 56.0, 75.2, 58.2, 48.7, 42.5, 13.2, 13.6, 45.8],
+    "Llama3.1-Instruct-8B + Huatuo CoT":  [70.2, 58.2, 76.1, 59.9, 53.3, 49.7, 17.3, 14.6, 49.9],
+    "Llama3.1-Instruct-8B + MedReason":   [68.4, 57.5, 77.6, 63.1, 57.5, 52.3, 16.4, 16.5, 51.2],
+    "Mistral-Instruct-7B (base)":         [48.2, 44.9, 50.1, 42.7, 43.5, 33.4, 11.4, 14.6, 36.1],
+    "Mistral-Instruct-7B + Huatuo CoT":   [59.9, 46.9, 57.5, 47.6, 50.0, 46.1, 14.4, 14.6, 42.1],
+    "Mistral-Instruct-7B + MedReason":    [58.7, 48.9, 59.2, 50.8, 52.3, 47.1, 16.6, 24.3, 44.7]
+  },
+
+  "table3_reasoning_models": {
+    "_columns_common": ["medqa_4opt", "medmcqa_val", "pubmedqa_test", "mmlu_pro_medical", "avg"],
+    "_columns_challenging": ["medbullets_op4", "medbullets_op5", "medxpertqa", "hle_med", "avg"],
+    "Medical-CoT-8B (base)":        {"common": [49.0, 42.6, 68.0, 48.7, 52.1], "challenging": [39.3, 34.1, 12.6, 15.5, 25.4]},
+    "Medical-CoT-8B + MedReason":   {"common": [58.0, 46.6, 74.6, 50.4, 57.4], "challenging": [49.0, 41.9, 14.2, 17.5, 30.6]},
+    "DeepSeek-Distill-8B (base)":      {"common": [55.4, 49.0, 73.9, 53.8, 58.0], "challenging": [41.9, 35.1, 13.5, 11.7, 25.5]},
+    "DeepSeek-Distill-8B + MedReason": {"common": [63.7, 51.8, 73.0, 57.5, 61.5], "challenging": [53.6, 49.0, 15.9, 14.6, 33.3]}
+  },
+
+  "huatuo_table1_main": {
+    "_source": "HuatuoGPT-o1, arXiv:2412.18925, Table 1 (main results on medical benchmarks).",
+    "_note": "Table 1 breaks MMLU-Pro into Health/Biology tracks and GPQA into Genetics/Molecular-Biology. The shipped eval_data.json only carries the merged 'MMLU-Pro_Medical_test' (1535) and 'GPQA_Medical_test' (390), so our runs reproduce Table 2's granularity, not Table 1's per-track split. The per-track columns below are kept for reference only.",
+    "_columns": ["medqa_4opt", "medmcqa_val", "pubmedqa_test", "mmlu_pro_health", "mmlu_pro_biology", "gpqa_genetics", "gpqa_molbio", "avg"],
+    "BioMistral-7B":            [45.0, 40.2, 66.9, 27.4, 49.2, 28.6, 38.5, 42.3],
+    "OpenBioLLM-8B":            [57.7, 54.1, 74.1, 38.4, 52.4, 43.7, 39.6, 51.4],
+    "UltraMedical-8B":          [71.1, 58.3, 77.4, 55.1, 66.7, 41.2, 48.4, 59.7],
+    "Mistral-7B-Instruct":      [48.2, 44.6, 59.5, 33.7, 53.6, 30.0, 46.1, 45.1],
+    "Yi-1.5-9B-Chat":           [50.8, 48.7, 69.8, 43.4, 65.6, 42.5, 48.1, 52.7],
+    "LLaMA-3.1-8B-Instruct":    [58.7, 56.0, 75.2, 52.7, 64.6, 33.8, 46.8, 55.4],
+    "GLM-4-9B-Chat":            [58.9, 49.8, 73.5, 45.5, 65.4, 53.8, 41.6, 55.5],
+    "Qwen2.5-7B-Instruct":      [57.0, 55.6, 72.7, 50.6, 70.2, 36.2, 49.7, 56.0],
+    "Gemma2-9B":                [61.8, 55.9, 63.3, 55.1, 74.9, 35.0, 57.4, 57.6],
+    "HuatuoGPT-o1-8B":          [72.6, 60.4, 79.2, 58.7, 68.2, 48.8, 59.7, 63.9],
+    "HuatuoGPT-o1-8B w/o RL":   [69.0, 57.9, 77.7, 53.5, 66.1, 41.2, 53.5, 59.8]
+  },
+
+  "huatuo_table2_ablation": {
+    "_source": "HuatuoGPT-o1, arXiv:2412.18925, Table 2 (ablation on the 8B model).",
+    "_note": "Same column set our bundle measures. 'SFT w/ Complex CoT + RL w/ PPO' is the released FreedomIntelligence/HuatuoGPT-o1-8B checkpoint, i.e. the backbone we fine-tune, and the row MedReason calls Huatuo-o1-RL-8B.",
+    "_columns": ["medqa_4opt", "medmcqa_val", "pubmedqa_test", "mmlu_pro_medical", "gpqa_medical"],
+    "LLaMA-3.1-8B-Instruct (base)":            [58.7, 56.0, 75.2, 58.2, 44.1],
+    "SFT w/ original exam data":               [60.0, 55.5, 74.1, 54.3, 46.9],
+    "SFT w/o CoT":                             [65.2, 58.1, 75.4, 58.5, 48.7],
+    "SFT w/ Simple CoT":                       [66.6, 59.2, 75.4, 57.0, 46.7],
+    "SFT w/ Complex CoT":                      [69.0, 57.9, 77.7, 59.4, 51.0],
+    "SFT w/o CoT + RL (PPO)":                  [66.4, 58.6, 76.3, 60.1, 49.8],
+    "SFT w/ Simple CoT + RL (PPO)":            [68.7, 58.4, 77.5, 60.2, 53.1],
+    "SFT w/ Complex CoT + RL (PPO) = o1-8B":   [72.6, 60.4, 79.2, 63.1, 57.5],
+    "SFT w/ Complex CoT + RL (DPO)":           [72.2, 58.4, 77.3, 60.4, 52.5],
+    "SFT w/ Complex CoT + RL (RLOO)":          [71.1, 60.1, 78.1, 60.9, 58.2]
+  },
+
+  "targets": {
+    "must_beat_backbone": {"model": "Huatuo-o1-RL-8B", "table4_avg": 55.9},
+    "must_beat_paper_best": {"model": "MedReason-8B", "table4_avg": 57.3},
+    "data_quality_claim": {
+      "comment": "Only valid on a Llama3.1-Instruct-8B backbone, against Table 2.",
+      "beat": {"model": "Llama3.1-Instruct-8B + MedReason", "avg_8bench": 51.2}
+    },
+    "continued_ft_from_medreason8b": {
+      "comment": "Arm A': continued fine-tuning of UCSC-VLAA/MedReason-8B. 55.7% of our corpus (24,529/44,007 rows, 13-gram containment at 0.8) already trained that checkpoint, so the paper's 3-epoch/5e-6 recipe would put six cumulative epochs through half the data. Use train/launch_continued.sh.",
+      "measured_overlap": {"medreason_subset": "23823/30671 = 77.7%",
+                           "medical_o1_subset": "706/13336 = 5.3%",
+                           "total": "24529/44007 = 55.7%"},
+      "contamination_headwind": "MedReason-8B was itself trained on 35/308 MedBullets items and 15 MedXpertQA items, so its published 57.5/55.5 on MedBullets are inflated relative to a decontaminated model. Compare against MedReason-8B re-measured on this harness, not against the published row.",
+      "gate": "no benchmark may drop more than 0.5 pt vs the re-measured backbone (make_report.py --tolerance)"
+    }
+  }
+}

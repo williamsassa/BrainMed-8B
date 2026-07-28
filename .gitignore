@@ -1,0 +1,38 @@
+# ---- model weights -------------------------------------------------------------------
+# 16GB per checkpoint against GitHub's 100MB file limit. The weights live on the
+# Hugging Face Hub: https://huggingface.co/BrainHealthAI/BrainMed-8B
+ckpts/
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# ---- derived inputs, rebuilt by the pipeline -----------------------------------------
+# data/prepare_data.py and eval/build_benchmarks.py regenerate these byte-for-byte from
+# upstream; the manifests, with SHA-256 digests, are committed so a rebuild can be checked.
+data/prepared/
+eval/benchmarks/*.jsonl
+external/
+.tokcache/
+.hf/
+
+# ---- run artefacts -------------------------------------------------------------------
+results/*/logs/
+results/_card/
+train_logs/*/wandb/
+logs/
+state/
+*.tgz
+*.tar.gz
+
+# ---- python --------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# ---- credentials ---------------------------------------------------------------------
+.env
+*.pem
+*token*.json

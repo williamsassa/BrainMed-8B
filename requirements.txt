@@ -1,0 +1,20 @@
+# Pinned against the MedReason environment (env.yml) where it matters, moved forward where
+# the original pins no longer build on current CUDA images.
+torch==2.5.1
+transformers==4.48.3
+accelerate==0.34.2
+deepspeed==0.15.4
+datasets==3.2.0
+tokenizers==0.21.0
+safetensors>=0.5.2
+sentencepiece==0.2.0
+flash-attn==2.7.4.post1        # needs --no-build-isolation, see setup_runpod.sh
+vllm==0.7.2                    # serving for evaluation (sglang==0.4.3.post2 also supported)
+openai==1.63.2
+jinja2>=3.1.4
+wandb==0.19.6
+huggingface-hub>=0.27.1
+hf-transfer==0.1.9
+matplotlib>=3.9
+numpy<2.0
+tqdm

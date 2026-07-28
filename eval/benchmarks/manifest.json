@@ -1,0 +1,108 @@
+{
+  "repos": {
+    "medreason": {
+      "path": "C:\\Users\\HP\\Downloads\\medqa-pipeline\\external\\MedReason",
+      "commit": "02b51f1df232198daa53aed1542615823e95350e"
+    },
+    "huatuo": {
+      "path": "C:\\Users\\HP\\Downloads\\medqa-pipeline\\external\\HuatuoGPT-o1",
+      "commit": "2c8d7fcaadaad44000eb1765cbe36a09968a0164"
+    }
+  },
+  "groups": {
+    "common": [
+      "medqa_4opt",
+      "medmcqa_val",
+      "pubmedqa_test",
+      "mmlu_pro_medical"
+    ],
+    "challenging": [
+      "medbullets_op4",
+      "medbullets_op5",
+      "medxpertqa",
+      "hle_med"
+    ]
+  },
+  "benchmarks": {
+    "medqa_4opt": {
+      "rows": 1273,
+      "dropped_malformed": 0,
+      "n_options": 4,
+      "provenance": "huatuo:evaluation/data/eval_data.json#MedQA_USLME_test",
+      "sha256": "0e44cf0b5144556eb0f29f9d892db49cd38fd175934e69cf6621a781e3aa0a84",
+      "status": "OK"
+    },
+    "medmcqa_val": {
+      "rows": 4183,
+      "dropped_malformed": 0,
+      "n_options": 4,
+      "provenance": "huatuo:evaluation/data/eval_data.json#MedMCQA_validation",
+      "sha256": "073ca5102627f51865d9ff05af5d6cbf254bcaf8d10feb76161a5882cebeaaf4",
+      "status": "OK"
+    },
+    "pubmedqa_test": {
+      "rows": 1000,
+      "dropped_malformed": 0,
+      "n_options": 3,
+      "provenance": "huatuo:evaluation/data/eval_data.json#PubMedQA_test",
+      "sha256": "997cc9eeed1f76851cd9a562e9c955338d90b5fd525e0e771bbf310ea946e68a",
+      "status": "OK"
+    },
+    "mmlu_pro_medical": {
+      "rows": 1535,
+      "dropped_malformed": 0,
+      "n_options": 8,
+      "provenance": "huatuo:evaluation/data/eval_data.json#MMLU-Pro_Medical_test",
+      "sha256": "5efe81ac5326bf20cbf2d544a8534a5603570eea08d3a8b4bc0c67c1e202a992",
+      "status": "OK"
+    },
+    "medbullets_op4": {
+      "rows": 308,
+      "dropped_malformed": 0,
+      "n_options": 4,
+      "provenance": "medreason:eval_data/medbullets_op4.jsonl",
+      "sha256": "5e1b252576f8eb5204b6bb8daa0cb4a468559657cb834693680529742c02b392",
+      "status": "OK"
+    },
+    "medbullets_op5": {
+      "rows": 308,
+      "dropped_malformed": 0,
+      "n_options": 5,
+      "provenance": "medreason:eval_data/medbullets_op5.jsonl",
+      "sha256": "ae2469afb392a604e0d41c7c03d085764a7a00a915ec7e6e9cddabc5bc75474e",
+      "status": "OK"
+    },
+    "medxpertqa": {
+      "rows": 1449,
+      "dropped_malformed": 0,
+      "n_options": 10,
+      "provenance": "medreason:eval_data/MedXpertQA_test.jsonl",
+      "sha256": "c113ca1ad328354d55d296f232e666c029e062f96af2c15b19832aeb34bf64e5",
+      "status": "OK"
+    },
+    "hle_med": {
+      "rows": 103,
+      "dropped_malformed": 0,
+      "n_options": 6,
+      "provenance": "medreason:eval_data/HLE_biomed.jsonl",
+      "sha256": "0dd45d2974bfe2d648fe997dc76e89370ad4f1a48afbab25240af3ddf929ac53",
+      "status": "OK"
+    },
+    "gpqa_medical": {
+      "rows": 390,
+      "dropped_malformed": 0,
+      "n_options": 4,
+      "provenance": "huatuo:evaluation/data/eval_data.json#GPQA_Medical_test",
+      "sha256": "c289a912f5f8e00338034e6832a4da3777f562a69b9f75ca2f96ff1b325e4555",
+      "status": "OK"
+    },
+    "medqa_5opt": {
+      "rows": 1273,
+      "dropped_malformed": 0,
+      "n_options": 5,
+      "provenance": "medreason:eval_data/medqa_test.jsonl",
+      "sha256": "4049ce6f1a2f89e0a2ee055e13a7df29182c24bae6e5885b01335c5aec583a5c",
+      "status": "OK"
+    }
+  }
+}
