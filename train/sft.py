@@ -1,21 +1,5 @@
 #!/usr/bin/env python
-"""
-Full-parameter supervised fine-tuning, DeepSpeed ZeRO-3.
 
-Hyperparameters follow MedReason (arXiv:2504.00993, sec. 4.1): lr 5e-6, effective batch
-128, 3 epochs, cosine schedule with warmup, weight decay 0.1, bf16, ZeRO-3, full FT (no
-LoRA). What is added on top - all of it observability or safety, none of it changes the
-optimisation recipe:
-
-  * held-out validation loss on a schedule, reported globally and per data source, with
-    best-checkpoint selection (upstream keeps the last epoch unconditionally);
-  * online W&B logging of loss / token accuracy / lr / throughput / grad norm;
-  * length-grouped batching + micro-batch > 1 + FlashAttention-2, so the same effective
-    batch of 128 costs a fraction of the wall clock;
-  * tokenisation cached to disk, deterministic seeding, resumable state.
-
-Launched through `train/launch.sh`.
-"""
 import argparse
 import json
 import logging
